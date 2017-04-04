@@ -2,11 +2,13 @@ package com.example.ganeshr.easykeep.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ganeshr.easykeep.R;
@@ -24,7 +26,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
     Context context;
     MViewHolder holder;
 
+
     List<NotesModel> list;
+    NotesModel model;
+    NotesModel model1;
+
 
 
     public NotesAdapter(Context context, List<NotesModel> list) {
@@ -45,8 +51,15 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
     @Override
     public void onBindViewHolder(MViewHolder holder, int position) {
 
+        model =list.get(position);
+
+
         holder.title.setText(list.get(position).getTitle());
         holder.notes.setText(list.get(position).getNote());
+
+
+        /// / for undo operation
+        holder.itemView.setTag(model);
 
     }
 
@@ -68,25 +81,46 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
             del=(ImageButton)itemView.findViewById(R.id.del_btn);
             edit=(ImageButton)itemView.findViewById(R.id.edit_btn);
 
+            final RelativeLayout layout=(RelativeLayout)itemView.findViewById(R.id.layout);
+
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     editRow();
+
                 }
             });
 
 
 
             del.setOnClickListener(new View.OnClickListener() {
+
+
                 @Override
                 public void onClick(View v) {
                     delteRow();
+
+                    Snackbar snackbar=Snackbar.make(layout,"Note Deleted",Snackbar.LENGTH_LONG)
+                    .setAction("UNDO", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Snackbar snackbar1 = Snackbar.make(layout, "NOTE  is restored!", Snackbar.LENGTH_LONG);
+                            RealmManger.addorUpadte(model1);
+                            notifyDataSetChanged();
+                            snackbar1.show();
+                        }
+                    });
+                    snackbar.show();
+
                 }
             });
 
 
 
         }
+
+
+
 
         private void editRow() {
             NotesModel model=list.get(getAdapterPosition());
@@ -102,6 +136,8 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
 
         private void delteRow() {
             NotesModel model=list.get(getAdapterPosition());
+            model1=new NotesModel(model.getTitle(),model.getNote(),model.getId());
+
             RealmManger.deleteUser(model);
             notifyDataSetChanged();
 

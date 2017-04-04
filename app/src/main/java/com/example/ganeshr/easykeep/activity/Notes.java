@@ -1,10 +1,7 @@
 package com.example.ganeshr.easykeep.activity;
 
-import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -24,8 +21,6 @@ public class Notes extends AppCompatActivity {
     Button save;
     NotesAdapter.MViewHolder holder;
 
-    Toolbar toolbar;
-
     NotesModel m;
 
 
@@ -42,8 +37,7 @@ public class Notes extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
 
 
-        toolbar=(Toolbar)findViewById(R.id.my_awesome_toolbar);
-        setSupportActionBar(toolbar);
+
 
         tvTitle=(TextView)findViewById(R.id.tv_title);
         tvNote=(TextView)findViewById(R.id.tv_note);
@@ -59,6 +53,7 @@ public class Notes extends AppCompatActivity {
             public void onClick(View v) {
                 getData();
                 RealmManger.getInstance(Notes.this).addorUpadte(m);
+
 
                 Toast.makeText(getApplicationContext(),"Successful !",Toast.LENGTH_LONG).show();
 

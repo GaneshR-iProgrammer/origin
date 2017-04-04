@@ -1,6 +1,5 @@
 package com.example.ganeshr.easykeep.model;
 
-import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -42,6 +41,8 @@ public class NotesModel extends RealmObject implements Parcelable {
             return new NotesModel[size];
         }
     };
+
+
 
     public String getTitle() {
         return title;

@@ -43,12 +43,13 @@ public class RealmManger {
     }
 
 
-    public  void addorUpadte(NotesModel model){
+    public static void addorUpadte(NotesModel model){
         try{
             realm.beginTransaction();
             model.setId(UUID.randomUUID().toString());
             realm.copyToRealmOrUpdate(model);
             realm.commitTransaction();
+
 
         }catch (Exception e){
 
@@ -61,7 +62,8 @@ public class RealmManger {
         RealmResults<NotesModel> results;
             realm.beginTransaction();
         results = realm.where(NotesModel.class).findAll();
-            realm.commitTransaction();
+        realm.commitTransaction();
+
 
         return results;
     }
@@ -71,6 +73,7 @@ public class RealmManger {
         realm.beginTransaction();
         m.deleteFromRealm();
         realm.commitTransaction();
+
 
         Log.i("Row Deleted",">>>>>>>");
 
@@ -83,11 +86,13 @@ public class RealmManger {
         model.setTitle(m.getTitle());
         model.setNote(m.getNote());
         realm.commitTransaction();
+
         Log.i("Row Edited",">>>>>>>");
 
         return  null;
 
     }
+
 
 
 }
