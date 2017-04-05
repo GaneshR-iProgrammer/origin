@@ -2,71 +2,69 @@ package com.example.ganeshr.easykeep.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ganeshr.easykeep.R;
-import com.example.ganeshr.easykeep.adapter.NotesAdapter;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class Notes extends AppCompatActivity {
 
     TextView tvTitle,tvNote;
-    EditText txtTitle,txtNote,txtId;
-    Button save;
-    NotesAdapter.MViewHolder holder;
-
+    EditText txtTitle,txtNote;
     NotesModel m;
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        tvTitle = (TextView) findViewById(R.id.tv_title);
+        tvNote = (TextView) findViewById(R.id.tv_note);
+        txtTitle = (EditText) findViewById(R.id.txt_title);
+        txtNote = (EditText) findViewById(R.id.txt_note);
 
-        tvTitle=(TextView)findViewById(R.id.tv_title);
-        tvNote=(TextView)findViewById(R.id.tv_note);
-        txtTitle=(EditText)findViewById(R.id.txt_title);
-        txtNote=(EditText)findViewById(R.id.txt_note);
-        txtId=(EditText)findViewById(R.id.txt_id);
-        save=(Button) findViewById(R.id.btn_save);
-
-        m=new NotesModel();
-
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getData();
-                RealmManger.getInstance(Notes.this).addorUpadte(m);
-
-
-                Toast.makeText(getApplicationContext(),"Successful !",Toast.LENGTH_LONG).show();
-
-                finish();
-            }
-        });
+        ButterKnife.bind(this);
+        m = new NotesModel();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+        @OnClick(R.id.btn_save)
+        public void manageSave () {
+            getData();
+            RealmManger.getInstance(Notes.this).addorUpadte(m);
+            Toast.makeText(getApplicationContext(),"Successful !",Toast.LENGTH_LONG).show();
+
+            finish();
+
+        }
 
     public void getData(){
         m.setTitle(txtTitle.getText().toString());
         m.setNote(txtNote.getText().toString());
-        m.setId(txtId.getText().toString());
+
     }
 
 

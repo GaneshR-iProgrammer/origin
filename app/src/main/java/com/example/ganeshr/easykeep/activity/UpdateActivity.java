@@ -2,6 +2,7 @@ package com.example.ganeshr.easykeep.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,10 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         edtTitle=(EditText)findViewById(R.id.edt_title);
         edtNote=(EditText)findViewById(R.id.edt_note);
         ButterKnife.bind(this);
@@ -29,6 +34,17 @@ public class UpdateActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @OnClick(R.id.update_btn)
         public void manageUpdate () {
@@ -54,5 +70,10 @@ public class UpdateActivity extends AppCompatActivity {
         finish();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

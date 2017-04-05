@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     android:weightSum="100"
-    android:layout_margin="5dp"
     tools:context="com.example.ganeshr.easykeep.activity.UpdateActivity">
 
 
     <EditText
-        android:gravity="left"
-        android:layout_weight="10"
-        android:hint="Title"
         android:id="@+id/edt_title"
-        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="10"
+        android:fontFamily="serif-monospace"
+        android:gravity="center"
+        android:hint="Title"
+        android:textSize="25sp"/>
 
 
     <EditText
-        android:layout_gravity="center"
-        android:layout_weight="85"
-        android:layout_centerHorizontal="true"
-        android:gravity="left"
-        android:layout_below="@+id/edt_title"
         android:id="@+id/edt_note"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_title"
+        android:layout_weight="85"
+        android:fontFamily="serif-monospace"/>
 
     <Button
-        android:text="Upadate"
         android:id="@+id/update_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:text="Upadate"
         />
 
 

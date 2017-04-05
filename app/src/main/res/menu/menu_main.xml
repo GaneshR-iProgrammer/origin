@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.Keep">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_action_name"
+        android:orderInCategory="300"
+        android:title="search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView"
+      />
+
+    <item
+        android:id="@+id/action_share"
+        android:title="Share"
+        app:showAsAction="ifRoom"
+      />
+        <!--app:actionProviderClass=
+            "android.widget.ShareActionProvider"-->
+
+
+    <item
+        android:id="@+id/refresh"
+        android:title="Refresh"/>
+    <item
+
+        android:id="@+id/action_exit"
+        android:title="Exit"
+        />
+</menu>

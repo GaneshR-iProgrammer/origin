@@ -23,7 +23,7 @@ public class RealmManger {
 
     private RealmManger(Context context){
         if(realm == null){
-            realm.init(context);
+            Realm.init(context);
 
             RealmConfiguration config0 = new RealmConfiguration.Builder()
                     .name(realmName)
@@ -46,7 +46,7 @@ public class RealmManger {
     public static void addorUpadte(NotesModel model){
         try{
             realm.beginTransaction();
-            model.setId(UUID.randomUUID().toString());
+            model.setId(java.util.UUID.randomUUID().toString());
             realm.copyToRealmOrUpdate(model);
             realm.commitTransaction();
 
@@ -57,25 +57,14 @@ public class RealmManger {
 
     }
 
-
-    public RealmResults<NotesModel> getAll() {
-        RealmResults<NotesModel> results;
-            realm.beginTransaction();
-        results = realm.where(NotesModel.class).findAll();
-        realm.commitTransaction();
-
-
-        return results;
-    }
-
-
     public static void deleteUser(NotesModel m){
         realm.beginTransaction();
         m.deleteFromRealm();
+        Log.i("Row Deleted",">>>>>>>");
         realm.commitTransaction();
 
 
-        Log.i("Row Deleted",">>>>>>>");
+
 
     }
 
@@ -91,6 +80,16 @@ public class RealmManger {
 
         return  null;
 
+    }
+
+    public RealmResults<NotesModel> getAll() {
+        RealmResults<NotesModel> results;
+            realm.beginTransaction();
+        results = realm.where(NotesModel.class).findAll();
+        realm.commitTransaction();
+
+
+        return results;
     }
 
 

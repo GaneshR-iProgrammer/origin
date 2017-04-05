@@ -12,9 +12,21 @@ import io.realm.annotations.PrimaryKey;
 
 public class NotesModel extends RealmObject implements Parcelable {
 
+    public static final Creator<NotesModel> CREATOR = new Creator<NotesModel>() {
+        @Override
+        public NotesModel createFromParcel(Parcel in) {
+            return new NotesModel(in);
+        }
+
+        @Override
+        public NotesModel[] newArray(int size) {
+            return new NotesModel[size];
+        }
+    };
     String title,note;
     @PrimaryKey
     String id;
+
     public NotesModel(String title, String note, String id) {
         this.title = title;
         this.note = note;
@@ -27,22 +39,8 @@ public class NotesModel extends RealmObject implements Parcelable {
     protected NotesModel(Parcel in) {
         title = in.readString();
         note = in.readString();
-        id = in.readString();
+        id =in.readString();
     }
-
-    public static final Creator<NotesModel> CREATOR = new Creator<NotesModel>() {
-        @Override
-        public NotesModel createFromParcel(Parcel in) {
-            return new NotesModel(in);
-        }
-
-        @Override
-        public NotesModel[] newArray(int size) {
-            return new NotesModel[size];
-        }
-    };
-
-
 
     public String getTitle() {
         return title;
