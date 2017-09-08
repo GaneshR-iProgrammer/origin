@@ -14,8 +14,6 @@ import io.realm.RealmResults;
  */
 
 public class RealmManger {
-
-
     private static final java.util.UUID UUID = null;
     private static Realm realm;
     private static RealmManger realmManager;
@@ -62,10 +60,6 @@ public class RealmManger {
         m.deleteFromRealm();
         Log.i("Row Deleted",">>>>>>>");
         realm.commitTransaction();
-
-
-
-
     }
 
     public static RealmManger update(NotesModel m) {
@@ -87,11 +81,7 @@ public class RealmManger {
             realm.beginTransaction();
         results = realm.where(NotesModel.class).findAll();
         realm.commitTransaction();
-
-
         return results;
     }
-
-
 
 }

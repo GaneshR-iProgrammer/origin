@@ -3,4 +3,48 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="hn_orange">#FF6600</color>
+    <color name="hn_orange_dark">#e65c00</color>
+    <color name="hn_orange_lighter">#FF8C3F</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="light_white">#f3f3f3</color>
+    <color name="red">#FF493F</color>
+    <color name="black">#000000</color>
+    <color name="black_trans">#88676767</color>
+    <color name="blue">#0071BC</color>
+    <color name="dark_gray">#E0E0E0</color>
+    <color name="ripple_color">#098765</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="gray_card">#F9F9F9</color>
+    <color name="condensed_text_color">#9b9b9b</color>
+    <color name="vertical_line_color">#e3e3e3</color>
+    <color name="circle_line_color">#efefef</color>
+    <color name="filter_tab_bg">#f3f3f3</color>
+    <color name="medium_black">#4a4a4a</color>
+    <color name="horizantal_line_color">#ededed</color>
+    <color name="card_bg">#f9f9f9</color>
+    <color name="registration_et_color">#4a4a4a</color>
+    <color name="et_color_grey">#4a4a4a</color>
+    <color name="light_displayname">#9b9b9b</color>
+    <color name="light_black">#4a4a4a</color>
+    <color name="tab_unselected_grey">#eeeeee</color>
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+    <color name="mid_geen">#439848</color>
+    <color name="op_40_black">#66000000</color>
+    <color name="dialog_bg">#bf4a494a</color>
+    <color name="transparent">#85FFFFFF</color>
+
+
 </resources>

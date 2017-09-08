@@ -1,71 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="100"
-    tools:context="com.example.ganeshr.easykeep.activity.Notes">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:weightSum="100"
+              tools:context="com.example.ganeshr.easykeep.activity.Notes">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_save_update">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_weight="10"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_weight="5"
-        android:text="Title :"
-        android:textSize="25sp"/>
-    <EditText
-        android:id="@+id/txt_title"
+        >
+
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_weight="5" />
-    </LinearLayout>
+        android:layout_height="@dimen/height_56"
+        android:layout_marginBottom="@dimen/margin_12"
+        android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginRight="@dimen/margin_8"
+        android:layout_marginTop="@dimen/padding_12"
+        android:background="@drawable/round_et_white"
+        android:paddingLeft="@dimen/padding_8"
+        android:paddingRight="@dimen/padding_8"
+        android:paddingTop="@dimen/padding_4"
+        app:hintTextAppearance="@style/TextLabel">
 
+        <com.example.ganeshr.easykeep.view.RegularEditText
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:hint="@string/mand_title"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:paddingTop="@dimen/padding_4"
+            android:textColor="@color/registration_et_color"
+            android:textSize="@dimen/text_size_16" />
+    </android.support.design.widget.TextInputLayout>
 
-
-    <LinearLayout
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_weight="70"
-        android:orientation="vertical"
-        android:weightSum="80">
-        <TextView
-            android:id="@+id/tv_note"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="10"
-            android:text="Your Note :"
-            android:textSize="25sp"/>
-        <EditText
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/margin_12"
+        android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginRight="@dimen/margin_8"
+        android:background="@drawable/round_et_white"
+        android:paddingLeft="@dimen/padding_8"
+        android:paddingRight="@dimen/padding_8"
+        android:paddingTop="@dimen/padding_4"
+        app:hintTextAppearance="@style/TextLabel">
+
+        <com.example.ganeshr.easykeep.view.RegularEditText
             android:id="@+id/txt_note"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="70"
-            android:scrollbars="vertical"/>
+            android:layout_height="match_parent"
+            android:minHeight="350dp"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="@string/mand_description"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences|textMultiLine"
+            android:paddingTop="@dimen/padding_4"
+            android:textColor="@color/registration_et_color"
+            android:textSize="@dimen/text_size_16" />
+    </android.support.design.widget.TextInputLayout>
 
+    </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_save_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/save_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            android:padding="5dp"
+            android:text="@string/save"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:visibility="gone">
+
+        </android.support.v7.widget.AppCompatButton>
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/update_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_8"
+            android:padding="5dp"
+            android:text="@string/update"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:visibility="visible">
+
+        </android.support.v7.widget.AppCompatButton>
+
+        <!--android:background="@drawable/button_enabled"-->
 
     </LinearLayout>
 
 
-<Button
-    android:id="@+id/btn_save"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="end"
-    android:layout_marginRight="5dp"
-    android:text="Save"/>
-
-</LinearLayout>
+</RelativeLayout>

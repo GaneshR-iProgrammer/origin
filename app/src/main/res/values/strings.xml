@@ -5,4 +5,18 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_toolbar">Easy Keep</string>
+
+
+
+
+    <string name="mand_title">Title *</string>
+    <string name="mand_description">Description *</string>
+    <string name="save">Save</string>
+    <string name="update">Update</string>
+    <string name="dialog_message">Changes Are not saved ,Do you want save ?</string>
+    <string name="dialog_title">Save Dialog</string>
+    <string name="ok">Save</string>
+    <string name="cancel">Discard</string>
+
+
 </resources>
