@@ -1,0 +1,21 @@
+<vector android:height="24dp" android:viewportHeight="460.0"
+    android:viewportWidth="460.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#FFAE46" android:pathData="M230,0C103,0 0,103 0,230c0,99.3 62.9,183.9 151.1,216.1l295,-295C413.9,62.9 329.3,0 230,0z"/>
+    <path android:fillColor="#FE843F" android:pathData="M446.1,151.1L360,65L100,395l51.1,51.1C175.7,455.1 202.3,460 230,460c127,0 230,-103 230,-230C460,202.3 455.1,175.7 446.1,151.1z"/>
+    <path android:fillColor="#FC5A37" android:pathData="M210,85l-20,0l0,-20l10,-10l10,10z"/>
+    <path android:fillColor="#7BE3FF" android:pathData="M100,375l0,20l130,0l10,-10l-10,-10l-65,-10z"/>
+    <path android:fillColor="#E0F8FF" android:pathData="M100,355l0,20l130,0l10,-10l-10,-10l-65,-10z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M100,65l0,290l130,0l10,-145l-10,-145z"/>
+    <path android:fillColor="#48D9FF" android:pathData="M230,375l0,20l130,0l0,-20l-65,-10z"/>
+    <path android:fillColor="#ADEEFF" android:pathData="M230,355l0,20l130,0l0,-20l-65,-10z"/>
+    <path android:fillColor="#7BE3FF" android:pathData="M280,275h80v80h-80z"/>
+    <path android:fillColor="#E0F8FF" android:pathData="M230,65l0,290l50,0l80,-80l0,-210z"/>
+    <path android:fillColor="#A8CFFF" android:pathData="M160,156.3l0,20l70,0l10,-10l-10,-10z"/>
+    <path android:fillColor="#A8CFFF" android:pathData="M160,196.3l0,20l70,0l10,-10l-10,-10z"/>
+    <path android:fillColor="#A8CFFF" android:pathData="M160,236.3l0,20l70,0l10,-10l-10,-10z"/>
+    <path android:fillColor="#73A7E6" android:pathData="M230,156.3h70v20h-70z"/>
+    <path android:fillColor="#73A7E6" android:pathData="M230,196.3h70v20h-70z"/>
+    <path android:fillColor="#73A7E6" android:pathData="M230,236.3h70v20h-70z"/>
+    <path android:fillColor="#ADEEFF" android:pathData="M280,275l0,80l80,-80z"/>
+    <path android:fillColor="#FC5A37" android:pathData="M240,135c-16.5,0 -30,-13.5 -30,-30V85h20v20c0,5.5 4.5,10 10,10s10,-4.5 10,-10V65c0,-11 -9,-20 -20,-20s-20,9 -20,20h-20c0,-22.1 17.9,-40 40,-40s40,17.9 40,40v40C270,121.5 256.5,135 240,135z"/>
+</vector>

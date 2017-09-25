@@ -17,6 +17,7 @@
     <string name="dialog_title">Save Dialog</string>
     <string name="ok">Save</string>
     <string name="cancel">Discard</string>
+    <string name="selected_count">%1$s selected</string>
 
 
 </resources>

@@ -47,4 +47,117 @@
     <color name="transparent">#85FFFFFF</color>
 
 
+
+    <color name="img_btn_background">#00000000</color>
+    <color name="tint_color">#FFFFFFFF</color>
+    <color name="image_overlay">#80000000</color>
+    <color name="Purple">#9575CD</color>
+    <color name="Indigo">#7986CB</color>
+    <color name="Blue">#64B5F6</color>
+    <color name="Light_Blue">#4FC3F7</color>
+    <color name="Green">#81C784</color>
+    <color name="Light_Green">#AED581</color>
+    <color name="Brown">#A1887F</color>
+    <color name="Lime">#DCE775</color>
+    <color name="Yellow">#FFF176</color>
+    <color name="Deep_Orange">#FF8A65</color>
+    <color name="Grey">#E0E0E0</color>
+    <color name="Blue_Grey">#90A4AE</color>
+    <color name="greyl">#ECEFF1</color>
+    <color name="greyd">#455A64</color>
+    <color name="greenl">#B2FF59</color>
+    <color name="greend">#8BC34A</color>
+    <color name="limel">#CDDC39</color>
+    <color name="limed">#AFB42B</color>
+    <color name="cyenl">#18FFFF</color>
+    <color name="blued">#0288D1</color>
+    <color name="Teall">#00796B</color>
+    <color name="yellowl">#FFE57F</color>
+    <color name="oranged">#FF6F00</color>
+    <color name="yellowd">#FFAB00</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="redd">#F4511E</color>
+    <color name="button_play">#FFAF37</color>
+
+
+
+    <integer-array name="coloePallete">
+        <item>@color/image_overlay</item>
+        <item>@color/Purple</item>
+        <item>@color/Indigo</item>
+        <item>@color/Blue</item>
+        <item>@color/Light_Blue</item>
+        <item>@color/Green</item>
+        <item>@color/Light_Green</item>
+        <item>@color/Brown</item>
+        <item>@color/Lime</item>
+        <item>@color/Yellow</item>
+        <item>@color/Deep_Orange</item>
+        <item>@color/Grey</item>
+        <item>@color/Blue_Grey</item>
+        <item>@color/greyl</item>
+        <item>@color/greyd</item>
+        <item>@color/greenl</item>
+        <item>@color/greend</item>
+        <item>@color/limel</item>
+        <item>@color/limed</item>
+        <item>@color/cyenl</item>
+        <item>@color/blued</item>
+        <item>@color/Teall</item>
+        <item>@color/yellowl</item>
+        <item>@color/Deep_Orange</item>
+        <item>@color/Grey</item>
+        <item>@color/Blue_Grey</item>
+        <item>@color/greyl</item>
+        <item>@color/greyd</item>
+        <item>@color/greenl</item>
+        <item>@color/greend</item>
+        <item>@color/limed</item>
+        <item>@color/cyenl</item>
+        <item>@color/blued</item>
+        <item>@color/Teall</item>
+        <item>@color/yellowl</item>
+        <item>@color/oranged</item>
+        <item>@color/yellowd</item>
+        <item>@color/yellow</item>
+        <item>@color/redd</item>
+        <item>@color/button_play</item>
+
+        </integer-array>
+
+
+
+    <!--#33000000 -->
+    <!--#00000000-->
+    <!--#FFFFFFFF  -->
+    <!--#80000000  -->
+    <!--#9575CD  -->
+    <!--#7986CB  -->
+    <!--#64B5F6 -->
+    <!--#4FC3F7  -->
+    <!--#81C784  -->
+    <!--#AED581   -->
+    <!--#A1887F  -->
+    <!--#DCE775  -->
+    <!--#FFF176  -->
+    <!--#FF8A65  -->
+    <!--#E0E0E0  -->
+    <!--#90A4AE    -->
+    <!--#ECEFF1   -->
+    <!--#455A64   -->
+    <!--#B2FF59  -->
+    <!--#8BC34A  -->
+    <!--#CDDC39  -->
+    <!--#AFB42B -->
+    <!--#18FFFF  -->
+    <!--#0288D1   -->
+    <!--#00796B -->
+    <!--#FFE57F  -->
+    <!--#FF6F00  -->
+    <!--#FFAB00  -->
+    <!--#FFEB3B  -->
+    <!--#F4511E  -->
+    <!--#FFAF37-->
+
+
 </resources>

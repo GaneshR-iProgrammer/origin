@@ -14,6 +14,9 @@ import com.example.ganeshr.easykeep.R;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -29,6 +32,10 @@ public class UpdateActivity extends AppCompatActivity {
 
     AlertDialog dialog;
     AlertDialog.Builder builder;
+
+    String strTitle="";
+    String strNote="";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,28 +77,31 @@ public class UpdateActivity extends AppCompatActivity {
     }
 
     public void saveDialog(){
-        builder = new AlertDialog.Builder(this);
-        builder.setCancelable(false);
 
+        if(strTitle.length()<edtTitle.getText().length() || strNote.length()<edtNote.getText().length()) {
+            builder = new AlertDialog.Builder(this);
+            builder.setCancelable(false);
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-                manageUpdate();
-            }
-        });
-        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                dialog.cancel();
-                finish();
-            }
-        });
+            builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                    manageUpdate();
+                }
+            });
+            builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    dialog.cancel();
+                    finish();
+                }
+            });
 
-        dialog=builder.create();
-        dialog.setTitle("Save changes");
-        dialog.setMessage("are you sure want to leave? to save chages click on save button.");
-        dialog.show();
-
+            dialog = builder.create();
+            dialog.setTitle("Save changes");
+            dialog.setMessage("are you sure want to leave? to save chages click on save button.");
+            dialog.show();
+        }else {
+            super.onBackPressed();
+        }
     }
 
     private void setDataAtLaunch() {
@@ -99,11 +109,15 @@ public class UpdateActivity extends AppCompatActivity {
         edtTitle.setText(model.getTitle());
         edtNote.setText(model.getNote());
 
+        strTitle=model.getTitle();
+        strNote=model.getNote();
+
     }
 
     private void onClickedUpdate() {
         model.setTitle(edtTitle.getText().toString());
         model.setNote(edtNote.getText().toString());
+        model.setDate(DateFormat.getDateTimeInstance().format(new Date()));
 
         RealmManger.update(model);
     }
