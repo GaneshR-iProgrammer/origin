@@ -79,85 +79,59 @@
     <color name="redd">#F4511E</color>
     <color name="button_play">#FFAF37</color>
 
+    <color name="blue_voilet">#8A2BE2</color>
+    <color name="shaded_brown">#8B4513</color>
+    <color name="dark_voilet">#9400D3</color>
+    <color name="medium_voilet_red">#C71585</color>
+    <color name="indian_red">#CD5C5C</color>
+    <color name="orchid">#DA70D6</color>
+    <color name="coral">#FF7F50</color>
+    <color name="orange">#FFA500</color>
+    <color name="deep_pink">#FF1493</color>
+    <color name="fuchisa">#FF00FF</color>
+
+
 
 
     <integer-array name="coloePallete">
-        <item>@color/image_overlay</item>
         <item>@color/Purple</item>
         <item>@color/Indigo</item>
         <item>@color/Blue</item>
         <item>@color/Light_Blue</item>
         <item>@color/Green</item>
         <item>@color/Light_Green</item>
-        <item>@color/Brown</item>
         <item>@color/Lime</item>
-        <item>@color/Yellow</item>
         <item>@color/Deep_Orange</item>
-        <item>@color/Grey</item>
-        <item>@color/Blue_Grey</item>
-        <item>@color/greyl</item>
         <item>@color/greyd</item>
         <item>@color/greenl</item>
         <item>@color/greend</item>
         <item>@color/limel</item>
         <item>@color/limed</item>
-        <item>@color/cyenl</item>
         <item>@color/blued</item>
         <item>@color/Teall</item>
-        <item>@color/yellowl</item>
         <item>@color/Deep_Orange</item>
-        <item>@color/Grey</item>
-        <item>@color/Blue_Grey</item>
-        <item>@color/greyl</item>
         <item>@color/greyd</item>
-        <item>@color/greenl</item>
         <item>@color/greend</item>
         <item>@color/limed</item>
-        <item>@color/cyenl</item>
         <item>@color/blued</item>
         <item>@color/Teall</item>
-        <item>@color/yellowl</item>
         <item>@color/oranged</item>
         <item>@color/yellowd</item>
         <item>@color/yellow</item>
         <item>@color/redd</item>
         <item>@color/button_play</item>
 
+        <item>@color/blue_voilet</item>
+        <item>@color/shaded_brown</item>
+        <item>@color/dark_voilet</item>
+        <item>@color/medium_voilet_red</item>
+        <item>@color/indian_red</item>
+        <item>@color/orchid</item>
+        <item>@color/coral</item>
+        <item>@color/orange</item>
+        <item>@color/deep_pink</item>
+        <item>@color/fuchisa</item>
         </integer-array>
-
-
-
-    <!--#33000000 -->
-    <!--#00000000-->
-    <!--#FFFFFFFF  -->
-    <!--#80000000  -->
-    <!--#9575CD  -->
-    <!--#7986CB  -->
-    <!--#64B5F6 -->
-    <!--#4FC3F7  -->
-    <!--#81C784  -->
-    <!--#AED581   -->
-    <!--#A1887F  -->
-    <!--#DCE775  -->
-    <!--#FFF176  -->
-    <!--#FF8A65  -->
-    <!--#E0E0E0  -->
-    <!--#90A4AE    -->
-    <!--#ECEFF1   -->
-    <!--#455A64   -->
-    <!--#B2FF59  -->
-    <!--#8BC34A  -->
-    <!--#CDDC39  -->
-    <!--#AFB42B -->
-    <!--#18FFFF  -->
-    <!--#0288D1   -->
-    <!--#00796B -->
-    <!--#FFE57F  -->
-    <!--#FF6F00  -->
-    <!--#FFAB00  -->
-    <!--#FFEB3B  -->
-    <!--#F4511E  -->
-    <!--#FFAF37-->
 
 
 </resources>

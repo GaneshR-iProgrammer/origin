@@ -33,12 +33,11 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     // double tap to exit implementation
     private static final int TIME_INTERVAL = 1500; // # milliseconds, desired time passed between two back presses.
     public static MenuItem shareItem;
-    public static MenuItem menu_Delete;
     RecyclerView recyclerView;
     RealmResults<NotesModel> list;
     TextView mSearchText;
     SearchView searchView;
-    MenuItem menuSearch;
+    public static MenuItem menuSearch;
     ShareActionProvider shareActionProvider;
     Toolbar toolbar;
     NotesAdapter adapter;
@@ -108,8 +107,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         shareItem = menu.findItem(R.id.action_share);
         shareItem.setVisible(false);
 
-        menu_Delete = menu.findItem(R.id.action_delete);
-        menu_Delete.setVisible(false);
 
         shareItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
@@ -130,24 +127,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
-        menu_Delete.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                pref=Pref.getInstance();
-//                adapter.removeData();
-                HomeActivity.shareItem.setVisible(false);
-                return false;
-            }
-        });
-
-
-
-       /* MenuItem shareItem = menu.findItem(R.id.action_share);
-        shareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(shareItem);
-        shareActionProvider.setShareIntent(adapter.getDefaultShareIntent());*/
-
-
         return super.onCreateOptionsMenu(menu);
 
     }
@@ -164,13 +143,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             case R.id.refresh:
                 adapter.notifyDataSetChanged();
                 return true;
-
-//            case R.id.menu_delete:
-////                adapter.delteRow();
-//
-////                actionMode.finish();
-//                return true;
-
 
             default:
                 // If we got here, the user's action was not recognized.

@@ -19,5 +19,7 @@
     <string name="cancel">Discard</string>
     <string name="selected_count">%1$s selected</string>
 
+    <string name="note_error">Please enter valid content</string>
+
 
 </resources>

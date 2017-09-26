@@ -1,10 +1,14 @@
 package com.example.ganeshr.easykeep.activity;
 
+import android.Manifest;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,11 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ganeshr.easykeep.R;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
+import com.example.ganeshr.easykeep.utils.CheckPermissions;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -47,7 +54,18 @@ public class Notes extends AppCompatActivity {
     Button updateButton;
     @BindView(R.id.save_btn)
     Button saveButton;
+
+    @BindView(R.id.tv_date)
+    TextView tv_date;
+
+    @BindView(R.id.img_edit)
+    ImageView img_edit;
+    @BindView(R.id.fab_share)
+    FloatingActionButton fab_share;
+
+
     AlertDialog dialog;
+
     AlertDialog.Builder builder;
     private HashMap<EditText, Boolean> hashMap;
 
@@ -56,6 +74,9 @@ public class Notes extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
+        ButterKnife.bind(this);
+
+        tv_date.setText(DateFormat.getDateTimeInstance().format(new Date()));
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -63,9 +84,13 @@ public class Notes extends AppCompatActivity {
         txtTitle = (EditText) findViewById(R.id.txt_title);
         txtNote = (EditText) findViewById(R.id.txt_note);
 
+//        txtTitle.setHint("");
+
         ButterKnife.bind(this);
         hashMap = new HashMap<>();
         updateButton.setVisibility(View.GONE);
+        img_edit.setVisibility(View.GONE);
+        fab_share.setVisibility(View.GONE);
         saveButton.setVisibility(View.VISIBLE);
         m = new NotesModel();
 
@@ -115,14 +140,14 @@ public class Notes extends AppCompatActivity {
     }
 
 
-    @OnTextChanged({R.id.txt_title, R.id.txt_note})
+    @OnTextChanged({R.id.txt_title})
     void OnTextChanged() {
-        if (validateMandatoryFields()) {
-            saveButton.setClickable(true);
-        } else {
-            //Utility.displayErrorMessage(edt_last_date_apply, "Please fill mandatory fields.");
-            saveButton.setClickable(false);
-        }
+        txtTitle.setError(null);
+    }
+
+    @OnTextChanged({R.id.txt_note})
+    void OnTextChanged1() {
+        txtNote.setError(null);
     }
 
     @Override
@@ -138,59 +163,88 @@ public class Notes extends AppCompatActivity {
 
     @OnClick(R.id.save_btn)
     public void manageSave() {
-        if (validateMandatoryFields()) {
+        if (checkValidation()) {
             getData();
-            saveAsPdf(txtTitle.getText().toString(), txtNote.getText().toString());
+
+            if (CheckPermissions.checkStoragePermission(Notes.this)) {
+                saveAsPdf(txtTitle.getText().toString(), txtNote.getText().toString());
+            }
+
             RealmManger.getInstance(Notes.this).addorUpadte(m);
-            Toast.makeText(getApplicationContext(), "Successful !", Toast.LENGTH_LONG).show();
+            finish();
+//            Toast.makeText(getApplicationContext(), "Successful !", Toast.LENGTH_LONG).show();
         }
-        finish();
+    }
+
+    private boolean checkValidation() {
+        clearError();
+        if (txtTitle.getText().toString().length() == 0) {
+            txtTitle.setError(getString(R.string.note_error));
+            return false;
+        } else if (txtNote.getText().toString().length() == 0) {
+            txtNote.setError(getString(R.string.note_error));
+            return false;
+        }
+        return true;
+    }
+
+    private void clearError() {
+        txtNote.setError(null);
+        txtTitle.setError(null);
     }
 
     private void saveAsPdf(String title, String info) {
 
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (permissionCheck == PackageManager.PERMISSION_GRANTED) {
+
 // Destination Folder and File name
-        String FILE = Environment.getExternalStorageDirectory().toString()
-                + "/EasyKeep/" + title + ".pdf";
+            String FILE = Environment.getExternalStorageDirectory().toString()
+                    + "/EasyKeep/" + title + ".pdf";
 
 // Create New Blank Document
-        Document document = new Document(PageSize.A4);
+            Document document = new Document(PageSize.A4);
 
-        // Create Directory in External Storage
-        String root = Environment.getExternalStorageDirectory().toString();
-        File myDir = new File(root + "/EasyKeep");
-        Log.d("path--", "" + myDir);
-        myDir.mkdirs();
-        Log.d("path--", "created");
+            // Create Directory in External Storage
+            String root = Environment.getExternalStorageDirectory().toString();
+            File myDir = new File(root + "/EasyKeep");
+            Log.d("path--", "" + myDir);
+            myDir.mkdirs();
+            Log.d("path--", "created");
 
 
 // Create Pdf Writer for Writting into New Created Document
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(FILE));
 
-            // Open Document for Writting into document
-            document.open();
+                // Open Document for Writting into document
+                document.open();
 
-            // User Define Method
-            addMetaData(document);
-            addTitlePage(document);
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (DocumentException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+                // User Define Method
+                addMetaData(document);
+                addTitlePage(document);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (DocumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            // Close Document after writting all content
+            document.close();
+
+            Log.d("Path-- ", "" + FILE);
+        } else {
+            Toast.makeText(this, "Permission denied !", Toast.LENGTH_SHORT).show();
         }
-        // Close Document after writting all content
-        document.close();
-
-        Log.d("Path-- ", "" + FILE);
     }
 
     public void getData() {
         m.setTitle(txtTitle.getText().toString());
         m.setNote(txtNote.getText().toString());
         m.setDate(DateFormat.getDateTimeInstance().format(new Date()));
+        Log.d("date--", "" + m.getDate());
 
     }
 

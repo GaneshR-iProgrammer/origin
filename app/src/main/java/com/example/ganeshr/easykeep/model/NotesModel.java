@@ -3,9 +3,6 @@ package com.example.ganeshr.easykeep.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-import java.util.StringTokenizer;
-
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
@@ -26,16 +23,16 @@ public class NotesModel extends RealmObject implements Parcelable {
             return new NotesModel[size];
         }
     };
-    String title,note;
+    String title, note;
     String date;
     @PrimaryKey
     String id;
 
-    public NotesModel(String title, String note, String id,String date) {
+    public NotesModel(String title, String note, String id, String date) {
         this.title = title;
         this.note = note;
         this.id = id;
-        this.date=date;
+        this.date = date;
     }
 
     public NotesModel() {
@@ -44,7 +41,8 @@ public class NotesModel extends RealmObject implements Parcelable {
     protected NotesModel(Parcel in) {
         title = in.readString();
         note = in.readString();
-        id =in.readString();
+        date = in.readString();
+        id = in.readString();
     }
 
     public String getTitle() {
@@ -89,6 +87,7 @@ public class NotesModel extends RealmObject implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeString(note);
+        dest.writeString(date);
         dest.writeString(String.valueOf(id));
     }
 }

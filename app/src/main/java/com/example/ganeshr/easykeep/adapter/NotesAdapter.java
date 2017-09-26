@@ -2,6 +2,7 @@ package com.example.ganeshr.easykeep.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -118,7 +119,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
 
             title = (TextView) itemView.findViewById(R.id.card_title);
             notes = (TextView) itemView.findViewById(R.id.card_note);
-//            del=(ImageButton)itemView.findViewById(R.id.del_btn);
+            del=(ImageButton)itemView.findViewById(R.id.del_btn);
 //            edit=(ImageButton)itemView.findViewById(R.id.edit_btn);
             card = (CardView) itemView.findViewById(R.id.mycard);
 
@@ -135,20 +136,20 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
 //                }
 //            });
 
-          /*  del.setOnClickListener(new View.OnClickListener() {
+            del.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View v) {
                     delteRow();
 
-                    Snackbar snackbar=Snackbar.make(layout,"Note Deleted",Snackbar.LENGTH_LONG)
+                    Snackbar snackbar=Snackbar.make(layout,"Note Deleted",Snackbar.LENGTH_SHORT)
                     .setAction("UNDO", new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Snackbar snackbar1 = Snackbar.make(layout, "NOTE  is restored!", Snackbar.LENGTH_LONG);
                             RealmManger.addorUpadte(model1);
                             notifyDataSetChanged();
+                            Snackbar snackbar1 = Snackbar.make(v, "NOTE  is restored!", Snackbar.LENGTH_SHORT);
                             snackbar1.show();
                         }
                     });
@@ -156,7 +157,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
 
                 }
             });
-*/
 
 
             card.setOnLongClickListener(new View.OnLongClickListener() {
@@ -164,6 +164,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
                 public boolean onLongClick(View v) {
                     setPreferences();
                     HomeActivity.shareItem.setVisible(true);
+                    HomeActivity.menuSearch.setVisible(false);
                     return true;
                 }
             });
@@ -173,13 +174,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
                 public void onClick(View v) {
                     editRow();
                     HomeActivity.shareItem.setVisible(false);
+                    HomeActivity.menuSearch.setVisible(true);
                 }
             });
 
         }
 
 
-        private void setPreferences(){
+        public void setPreferences(){
 
             Pref pref=Pref.getInstance();
             NotesModel modelShare = list.get(getAdapterPosition());
@@ -202,10 +204,12 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
             // final int adapterPosition = holder.getAdapterPosition();
             NotesModel model = list.get(getAdapterPosition());
             Log.d("Row Deleted" + model.getTitle().toString(), ":" + model.getNote().toString());
-            model1 = new NotesModel(model.getTitle(), model.getNote(), model.getId(), "");
+            model1 = new NotesModel(model.getTitle(), model.getNote(), model.getId(), model.getDate());
+            Log.d("time--",model.getDate());
 
             RealmManger.deleteUser(model);
-            notifyDataSetChanged();
+            notifyItemRemoved(getAdapterPosition());
+//            notifyDataSetChanged();
 
         }
 
