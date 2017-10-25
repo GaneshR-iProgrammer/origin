@@ -41,7 +41,7 @@ public class RegularEditText extends android.widget.EditText {
      * This method is used to set the given font to the TextView.
      */
     private void setFont() {
-        Typeface typeface = TypefaceCache.get(getContext().getAssets(), "fonts/Roboto-Regular.ttf");
+        Typeface typeface = TypefaceCache.get(getContext().getAssets(), "fonts/Roboto-Bold.ttf");
         setTypeface(typeface);
     }
 

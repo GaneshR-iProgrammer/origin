@@ -1,21 +1,27 @@
 package com.example.ganeshr.easykeep.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +29,10 @@ import android.widget.Toast;
 import com.example.ganeshr.easykeep.R;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
-import com.example.ganeshr.easykeep.utils.CheckPermissions;
+import com.example.ganeshr.easykeep.utils.Constants;
+import com.example.ganeshr.easykeep.utils.PathUtil;
+import com.example.ganeshr.easykeep.utils.PermissionUtils;
+import com.example.ganeshr.easykeep.utils.Utility;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -37,6 +46,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -54,7 +64,6 @@ public class Notes extends AppCompatActivity {
     Button updateButton;
     @BindView(R.id.save_btn)
     Button saveButton;
-
     @BindView(R.id.tv_date)
     TextView tv_date;
 
@@ -63,11 +72,13 @@ public class Notes extends AppCompatActivity {
     @BindView(R.id.fab_share)
     FloatingActionButton fab_share;
 
-
+    Toolbar toolbar;
     AlertDialog dialog;
 
     AlertDialog.Builder builder;
+    String document_file = null;
     private HashMap<EditText, Boolean> hashMap;
+    private File file;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -76,7 +87,12 @@ public class Notes extends AppCompatActivity {
         setContentView(R.layout.activity_notes);
         ButterKnife.bind(this);
 
+        Utility.setStatusBarGradiant(this);
+
         tv_date.setText(DateFormat.getDateTimeInstance().format(new Date()));
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -139,7 +155,6 @@ public class Notes extends AppCompatActivity {
         document.newPage();
     }
 
-
     @OnTextChanged({R.id.txt_title})
     void OnTextChanged() {
         txtTitle.setError(null);
@@ -166,13 +181,13 @@ public class Notes extends AppCompatActivity {
         if (checkValidation()) {
             getData();
 
-            if (CheckPermissions.checkStoragePermission(Notes.this)) {
-                saveAsPdf(txtTitle.getText().toString(), txtNote.getText().toString());
-            }
+            //save as pdf
+//            if (CheckPermissions.checkStoragePermission(Notes.this)) {
+//                saveAsPdf(txtTitle.getText().toString(), txtNote.getText().toString());
+//            }
 
             RealmManger.getInstance(Notes.this).addorUpadte(m);
             finish();
-//            Toast.makeText(getApplicationContext(), "Successful !", Toast.LENGTH_LONG).show();
         }
     }
 

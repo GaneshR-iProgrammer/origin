@@ -6,18 +6,19 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ganeshr.easykeep.R;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
-import com.example.ganeshr.easykeep.utils.Pref;
 import com.example.ganeshr.easykeep.utils.Utility;
 
 import java.text.DateFormat;
@@ -53,12 +54,17 @@ public class UpdateActivity extends AppCompatActivity {
     String strTitle = "";
     String strNote = "";
 
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notes);
         ButterKnife.bind(this);
+
+        Utility.setStatusBarGradiant(this);
+        toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -74,7 +80,7 @@ public class UpdateActivity extends AppCompatActivity {
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
 
-                String shareMsg = txt_title.getText().toString() +"\n \n" + txt_note.getText().toString();
+                String shareMsg = txt_title.getText().toString() + "\n \n" + txt_note.getText().toString();
                 share.putExtra(Intent.EXTRA_TEXT, shareMsg);
                 startActivity(Intent.createChooser(share, "Share using"));
 

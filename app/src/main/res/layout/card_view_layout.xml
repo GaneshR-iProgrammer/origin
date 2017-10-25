@@ -6,23 +6,34 @@
 
 
     <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_outer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        card_view:cardBackgroundColor="@color/card_back"
+        card_view:cardCornerRadius="0dp"
+        card_view:cardElevation="3dp"
+        android:layout_marginTop="@dimen/margin_6"
+        android:layout_marginRight="@dimen/margin_6">
+
+    <android.support.v7.widget.CardView
         android:id="@+id/mycard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="@dimen/margin_8"
-        android:layout_marginTop="@dimen/margin_8"
         android:clickable="true"
         android:minHeight="40dp"
         app:cardBackgroundColor="@color/cardview_light_background"
-        app:cardElevation="5dp"
+        app:cardElevation="3dp"
         app:cardUseCompatPadding="true"
-        >
+        app:cardCornerRadius="10dp">
 
         <RelativeLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/padding_4">
+            android:padding="@dimen/padding_4"
+            android:layout_margin="@dimen/margin_4">
 
             <TextView
                 android:id="@+id/card_title"
@@ -34,7 +45,7 @@
                 android:text="Your Heading"
                 android:textAppearance="?android:textAppearanceLarge"
                 android:textColor="@color/white"
-                android:textStyle="bold|italic"
+                android:textStyle="bold"
                 />
 
             <ImageButton
@@ -66,10 +77,11 @@
                 android:hint="Your Noted data"
                 android:maxLines="5"
                 android:textAppearance="?android:textAppearanceMedium"
-                android:textColor="@color/white"
-                android:textStyle="italic"/>
+                android:textColor="@color/white"/>
 
         </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
 
     </android.support.v7.widget.CardView>
 

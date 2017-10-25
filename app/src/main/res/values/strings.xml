@@ -7,8 +7,6 @@
     <string name="title_activity_toolbar">Easy Keep</string>
 
 
-
-
     <string name="mand_title">Title *</string>
     <string name="mand_description">Description *</string>
     <string name="save">Save</string>
@@ -20,6 +18,11 @@
     <string name="selected_count">%1$s selected</string>
 
     <string name="note_error">Please enter valid content</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hint">Search by title</string>
 
 
 </resources>

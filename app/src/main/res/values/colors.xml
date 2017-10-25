@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#8A2BE2</color>
+    <color name="colorPrimaryDark">#9400D3</color>
     <color name="colorAccent">#FF4081</color>
 
     <color name="hn_orange">#FF6600</color>
@@ -47,7 +47,6 @@
     <color name="transparent">#85FFFFFF</color>
 
 
-
     <color name="img_btn_background">#00000000</color>
     <color name="tint_color">#FFFFFFFF</color>
     <color name="image_overlay">#80000000</color>
@@ -91,8 +90,6 @@
     <color name="fuchisa">#FF00FF</color>
 
 
-
-
     <integer-array name="coloePallete">
         <item>@color/Purple</item>
         <item>@color/Indigo</item>
@@ -131,7 +128,10 @@
         <item>@color/orange</item>
         <item>@color/deep_pink</item>
         <item>@color/fuchisa</item>
-        </integer-array>
+    </integer-array>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="card_back">#3333B5E5</color>
 
 
 </resources>

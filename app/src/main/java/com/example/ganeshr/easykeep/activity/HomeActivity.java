@@ -1,8 +1,11 @@
 package com.example.ganeshr.easykeep.activity;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,18 +36,18 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
     // double tap to exit implementation
     private static final int TIME_INTERVAL = 1500; // # milliseconds, desired time passed between two back presses.
+    private static final int SPEECH_REQUEST_CODE = 0;
     public static MenuItem shareItem;
+    public static MenuItem menuSearch;
     RecyclerView recyclerView;
     RealmResults<NotesModel> list;
     TextView mSearchText;
     SearchView searchView;
-    public static MenuItem menuSearch;
     ShareActionProvider shareActionProvider;
     Toolbar toolbar;
     NotesAdapter adapter;
-    private long mBackPressed;
-
     Pref pref;
+    private long mBackPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,23 +55,16 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         setContentView(R.layout.toolbar);
         mSearchText = new TextView(this);
 
+        Utility.setStatusBarGradiant(this);
+
+        setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
+
         recyclerView = (RecyclerView) findViewById(R.id.rv_main1);
         toolbar = (Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
-        list = RealmManger.getInstance(getApplicationContext()).getAll();
+        final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
 
-
-//      list = RealmManger.getInstance(getApplicationContext()).where(MyTable.class).findAllSorted("date",Sort.DESCENDING);
-
-        if (list.size() == 0) {
-
-            Toast.makeText(getApplicationContext(), "Empty List nothing to Show", Toast.LENGTH_LONG).show();
-        } else {
-            setAdapter();
-        }
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +74,16 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
             }
         });
+
+
+        // Get the intent, verify the action and get the query
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            Log.d("test--",query);
+            onQueryTextChange(query);
+        }
+
     }
 
 
@@ -84,51 +91,32 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         adapter = new NotesAdapter(HomeActivity.this, list);
         RecyclerView.LayoutManager manager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
         list = RealmManger.getInstance(getApplicationContext()).getAll();
-        setAdapter();
+
+        if (list.size() == 0) {
+            Toast.makeText(getApplicationContext(), "Empty List nothing to Show", Toast.LENGTH_LONG).show();
+        } else {
+            setAdapter();
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
-
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         menuSearch = menu.findItem(R.id.action_search);
-        searchView = (SearchView) MenuItemCompat.getActionView(menuSearch);
-        searchView.setOnQueryTextListener(this);
-
         shareItem = menu.findItem(R.id.action_share);
         shareItem.setVisible(false);
-
-
-        shareItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                pref=Pref.getInstance();
-
-                Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-
-                String shareMsg = pref.getNoteTilte() +"\n \n" + pref.getNoteText();
-                share.putExtra(Intent.EXTRA_TEXT, shareMsg);
-                startActivity(Intent.createChooser(share, "Share using"));
-
-                Utility.clearPref(pref);
-                HomeActivity.shareItem.setVisible(false);
-                return false;
-            }
-        });
-
         return super.onCreateOptionsMenu(menu);
-
     }
 
 
@@ -138,10 +126,25 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         switch (item.getItemId()) {
 
             case R.id.action_exit:
-                onBackPressed();
-                return true;
+                super.onBackPressed();
             case R.id.refresh:
                 adapter.notifyDataSetChanged();
+                return true;
+
+            case R.id.action_search:
+                searchView = (SearchView) MenuItemCompat.getActionView(menuSearch);
+                searchView.setOnQueryTextListener(this);
+                return true;
+
+            case R.id.action_share:
+                pref = Pref.getInstance();
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("text/plain");
+                String shareMsg = pref.getNoteTilte() + "\n \n" + pref.getNoteText();
+                share.putExtra(Intent.EXTRA_TEXT, shareMsg);
+                startActivity(Intent.createChooser(share, "Share using"));
+                Utility.clearPref(pref);
+                HomeActivity.shareItem.setVisible(false);
                 return true;
 
             default:
@@ -151,6 +154,12 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
         }
 
+    }
+
+    @Override
+    public boolean onSearchRequested() {
+//        pauseSomeStuff();
+        return super.onSearchRequested();
     }
 
     @Override
@@ -165,7 +174,7 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         for (NotesModel model1 : list) {
             String strTitle = model1.getTitle().toLowerCase();
 
-            if (strTitle.contains(newText)) {
+            if (strTitle.contains(newText) || model1.getNote().contains(newText)) {
                 newList.add(model1);
             }
         }
