@@ -1,11 +1,8 @@
 package com.example.ganeshr.easykeep.activity;
 
 import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.RecognizerIntent;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +27,8 @@ import com.example.ganeshr.easykeep.utils.Utility;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.realm.RealmResults;
 
 public class HomeActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
@@ -39,12 +38,18 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     private static final int SPEECH_REQUEST_CODE = 0;
     public static MenuItem shareItem;
     public static MenuItem menuSearch;
+
+    @BindView(R.id.rv_main1)
     RecyclerView recyclerView;
+
     RealmResults<NotesModel> list;
     TextView mSearchText;
     SearchView searchView;
     ShareActionProvider shareActionProvider;
+
+    @BindView(R.id.toolbar1)
     Toolbar toolbar;
+
     NotesAdapter adapter;
     Pref pref;
     private long mBackPressed;
@@ -53,18 +58,14 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.toolbar);
+        ButterKnife.bind(HomeActivity.this);
+
         mSearchText = new TextView(this);
-
         Utility.setStatusBarGradiant(this);
-
         setDefaultKeyMode(DEFAULT_KEYS_SEARCH_LOCAL);
-
-        recyclerView = (RecyclerView) findViewById(R.id.rv_main1);
-        toolbar = (Toolbar) findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab1);
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,12 +81,10 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            Log.d("test--",query);
+            Log.d("test--", query);
             onQueryTextChange(query);
         }
-
     }
-
 
     public void setAdapter() {
         adapter = new NotesAdapter(HomeActivity.this, list);
@@ -99,7 +98,6 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     protected void onResume() {
         super.onResume();
-
         list = RealmManger.getInstance(getApplicationContext()).getAll();
 
         if (list.size() == 0) {
@@ -145,6 +143,7 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
                 startActivity(Intent.createChooser(share, "Share using"));
                 Utility.clearPref(pref);
                 HomeActivity.shareItem.setVisible(false);
+                HomeActivity.menuSearch.setVisible(true);
                 return true;
 
             default:
@@ -185,14 +184,18 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public void onBackPressed() {
-        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-            super.onBackPressed();
-            return;
+        if (shareItem.isVisible()) {
+            shareItem.setVisible(false);
+            menuSearch.setVisible(true);
         } else {
-            Toast.makeText(getBaseContext(), "Top back again to exit", Toast.LENGTH_SHORT).show();
+            if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                super.onBackPressed();
+                return;
+            } else {
+                Toast.makeText(getBaseContext(), "Top back again to exit", Toast.LENGTH_SHORT).show();
+            }
+            mBackPressed = System.currentTimeMillis();
         }
-
-        mBackPressed = System.currentTimeMillis();
     }
 }
 

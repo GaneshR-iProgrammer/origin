@@ -85,8 +85,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MViewHolder>
         list = new ArrayList<>();
         list.addAll(nModel);
         notifyDataSetChanged();
-
-
     }
 
     public Intent getDefaultShareIntent() {

@@ -23,6 +23,7 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="hint">Search by title</string>
+    <string name="str_ex">android:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_marginandroid:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_marginandroid:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_margin</string>
 
 
 </resources>

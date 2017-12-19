@@ -45,6 +45,7 @@
     <color name="op_40_black">#66000000</color>
     <color name="dialog_bg">#bf4a494a</color>
     <color name="transparent">#85FFFFFF</color>
+    <color name="transparent1">#33000000</color>
 
 
     <color name="img_btn_background">#00000000</color>

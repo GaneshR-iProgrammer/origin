@@ -41,7 +41,7 @@ public class Utility {
             Window window = activity.getWindow();
             Drawable background = activity.getResources().getDrawable(R.drawable.gradient);
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(activity.getResources().getColor(R.color.transparent));
+            window.setStatusBarColor(activity.getResources().getColor(R.color.transparent1));
 //            window.setNavigationBarColor(activity.getResources().getColor(R.color.transparent));
             window.setBackgroundDrawable(background);
         }
