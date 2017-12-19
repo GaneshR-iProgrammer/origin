@@ -1,6 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#8A2BE2</color>
+    <color name="colorPrimaryDark">#9400D3</color>
     <color name="colorAccent">#FF4081</color>
+
+    <color name="hn_orange">#FF6600</color>
+    <color name="hn_orange_dark">#e65c00</color>
+    <color name="hn_orange_lighter">#FF8C3F</color>
+
+
+    <color name="white">#FFFFFF</color>
+    <color name="light_white">#f3f3f3</color>
+    <color name="red">#FF493F</color>
+    <color name="black">#000000</color>
+    <color name="black_trans">#88676767</color>
+    <color name="blue">#0071BC</color>
+    <color name="dark_gray">#E0E0E0</color>
+    <color name="ripple_color">#098765</color>
+    <color name="light_gray">#D3D3D3</color>
+    <color name="gray_card">#F9F9F9</color>
+    <color name="condensed_text_color">#9b9b9b</color>
+    <color name="vertical_line_color">#e3e3e3</color>
+    <color name="circle_line_color">#efefef</color>
+    <color name="filter_tab_bg">#f3f3f3</color>
+    <color name="medium_black">#4a4a4a</color>
+    <color name="horizantal_line_color">#ededed</color>
+    <color name="card_bg">#f9f9f9</color>
+    <color name="registration_et_color">#4a4a4a</color>
+    <color name="et_color_grey">#4a4a4a</color>
+    <color name="light_displayname">#9b9b9b</color>
+    <color name="light_black">#4a4a4a</color>
+    <color name="tab_unselected_grey">#eeeeee</color>
+    <color name="gplus_color_1">#3e802f</color>
+    <color name="gplus_color_2">#f4b400</color>
+    <color name="gplus_color_3">#427fed</color>
+    <color name="gplus_color_4">#b23424</color>
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+    <color name="mid_geen">#439848</color>
+    <color name="op_40_black">#66000000</color>
+    <color name="dialog_bg">#bf4a494a</color>
+    <color name="transparent">#85FFFFFF</color>
+    <color name="transparent1">#33000000</color>
+
+
+    <color name="img_btn_background">#00000000</color>
+    <color name="tint_color">#FFFFFFFF</color>
+    <color name="image_overlay">#80000000</color>
+    <color name="Purple">#9575CD</color>
+    <color name="Indigo">#7986CB</color>
+    <color name="Blue">#64B5F6</color>
+    <color name="Light_Blue">#4FC3F7</color>
+    <color name="Green">#81C784</color>
+    <color name="Light_Green">#AED581</color>
+    <color name="Brown">#A1887F</color>
+    <color name="Lime">#DCE775</color>
+    <color name="Yellow">#FFF176</color>
+    <color name="Deep_Orange">#FF8A65</color>
+    <color name="Grey">#E0E0E0</color>
+    <color name="Blue_Grey">#90A4AE</color>
+    <color name="greyl">#ECEFF1</color>
+    <color name="greyd">#455A64</color>
+    <color name="greenl">#B2FF59</color>
+    <color name="greend">#8BC34A</color>
+    <color name="limel">#CDDC39</color>
+    <color name="limed">#AFB42B</color>
+    <color name="cyenl">#18FFFF</color>
+    <color name="blued">#0288D1</color>
+    <color name="Teall">#00796B</color>
+    <color name="yellowl">#FFE57F</color>
+    <color name="oranged">#FF6F00</color>
+    <color name="yellowd">#FFAB00</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="redd">#F4511E</color>
+    <color name="button_play">#FFAF37</color>
+
+    <color name="blue_voilet">#8A2BE2</color>
+    <color name="shaded_brown">#8B4513</color>
+    <color name="dark_voilet">#9400D3</color>
+    <color name="medium_voilet_red">#C71585</color>
+    <color name="indian_red">#CD5C5C</color>
+    <color name="orchid">#DA70D6</color>
+    <color name="coral">#FF7F50</color>
+    <color name="orange">#FFA500</color>
+    <color name="deep_pink">#FF1493</color>
+    <color name="fuchisa">#FF00FF</color>
+
+
+    <integer-array name="coloePallete">
+        <item>@color/Purple</item>
+        <item>@color/Indigo</item>
+        <item>@color/Blue</item>
+        <item>@color/Light_Blue</item>
+        <item>@color/Green</item>
+        <item>@color/Light_Green</item>
+        <item>@color/Lime</item>
+        <item>@color/Deep_Orange</item>
+        <item>@color/greyd</item>
+        <item>@color/greenl</item>
+        <item>@color/greend</item>
+        <item>@color/limel</item>
+        <item>@color/limed</item>
+        <item>@color/blued</item>
+        <item>@color/Teall</item>
+        <item>@color/Deep_Orange</item>
+        <item>@color/greyd</item>
+        <item>@color/greend</item>
+        <item>@color/limed</item>
+        <item>@color/blued</item>
+        <item>@color/Teall</item>
+        <item>@color/oranged</item>
+        <item>@color/yellowd</item>
+        <item>@color/yellow</item>
+        <item>@color/redd</item>
+        <item>@color/button_play</item>
+
+        <item>@color/blue_voilet</item>
+        <item>@color/shaded_brown</item>
+        <item>@color/dark_voilet</item>
+        <item>@color/medium_voilet_red</item>
+        <item>@color/indian_red</item>
+        <item>@color/orchid</item>
+        <item>@color/coral</item>
+        <item>@color/orange</item>
+        <item>@color/deep_pink</item>
+        <item>@color/fuchisa</item>
+    </integer-array>
+
+    <color name="black_overlay">#66000000</color>
+    <color name="card_back">#3333B5E5</color>
+
+
 </resources>

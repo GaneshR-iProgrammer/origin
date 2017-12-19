@@ -8,14 +8,13 @@ import com.example.ganeshr.easykeep.model.NotesModel;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Created by ganeshr on 23/3/17.
  */
 
 public class RealmManger {
-
-
     private static final java.util.UUID UUID = null;
     private static Realm realm;
     private static RealmManger realmManager;
@@ -62,10 +61,6 @@ public class RealmManger {
         m.deleteFromRealm();
         Log.i("Row Deleted",">>>>>>>");
         realm.commitTransaction();
-
-
-
-
     }
 
     public static RealmManger update(NotesModel m) {
@@ -74,6 +69,7 @@ public class RealmManger {
         realm.beginTransaction();
         model.setTitle(m.getTitle());
         model.setNote(m.getNote());
+        model.setDate(m.getDate());
         realm.commitTransaction();
 
         Log.i("Row Edited",">>>>>>>");
@@ -83,15 +79,18 @@ public class RealmManger {
     }
 
     public RealmResults<NotesModel> getAll() {
-        RealmResults<NotesModel> results;
-            realm.beginTransaction();
-        results = realm.where(NotesModel.class).findAll();
-        realm.commitTransaction();
+        //query example
+            return realm.where(NotesModel.class)
+                    .findAllSorted("date",Sort.DESCENDING);
+        }
 
 
-        return results;
-    }
-
+//
+//        RealmResults<NotesModel> results;
+//            realm.beginTransaction();
+//        results = realm.where(NotesModel.class).findAll();
+//        realm.commitTransaction();
+//        return results;
 
 
 }

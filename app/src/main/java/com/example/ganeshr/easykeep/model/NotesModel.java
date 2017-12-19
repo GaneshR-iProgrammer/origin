@@ -23,14 +23,16 @@ public class NotesModel extends RealmObject implements Parcelable {
             return new NotesModel[size];
         }
     };
-    String title,note;
+    String title, note;
+    String date;
     @PrimaryKey
     String id;
 
-    public NotesModel(String title, String note, String id) {
+    public NotesModel(String title, String note, String id, String date) {
         this.title = title;
         this.note = note;
         this.id = id;
+        this.date = date;
     }
 
     public NotesModel() {
@@ -39,7 +41,8 @@ public class NotesModel extends RealmObject implements Parcelable {
     protected NotesModel(Parcel in) {
         title = in.readString();
         note = in.readString();
-        id =in.readString();
+        date = in.readString();
+        id = in.readString();
     }
 
     public String getTitle() {
@@ -67,6 +70,14 @@ public class NotesModel extends RealmObject implements Parcelable {
         this.id = id;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -76,6 +87,7 @@ public class NotesModel extends RealmObject implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeString(note);
+        dest.writeString(date);
         dest.writeString(String.valueOf(id));
     }
 }

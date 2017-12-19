@@ -5,4 +5,25 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_toolbar">Easy Keep</string>
+
+
+    <string name="mand_title">Title *</string>
+    <string name="mand_description">Description *</string>
+    <string name="save">Save</string>
+    <string name="update">Update</string>
+    <string name="dialog_message">Changes Are not saved ,Do you want save ?</string>
+    <string name="dialog_title">Save Dialog</string>
+    <string name="ok">Save</string>
+    <string name="cancel">Discard</string>
+    <string name="selected_count">%1$s selected</string>
+
+    <string name="note_error">Please enter valid content</string>
+
+    <string name="title_activity_splash_screen">SplashScreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="hint">Search by title</string>
+    <string name="str_ex">android:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_marginandroid:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_marginandroid:layout_margin=dimen/activity_horizontal_margin android:src=@drawable/ic_comment_24dp app:layout_anchor=@id/main.appbar app:layout_anchorGravity=bottom|right|end android:padding=@dimen/activity_horizontal_margin</string>
+
+
 </resources>
