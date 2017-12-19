@@ -1,40 +1,59 @@
 package com.example.ganeshr.easykeep.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ganeshr.easykeep.R;
 import com.example.ganeshr.easykeep.model.NotesModel;
 import com.example.ganeshr.easykeep.rest.RealmManger;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
+
 public class UpdateActivity extends AppCompatActivity {
     EditText edtTitle,edtNote;
-    Button updateButton;
-
-
     NotesModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         edtTitle=(EditText)findViewById(R.id.edt_title);
         edtNote=(EditText)findViewById(R.id.edt_note);
-        updateButton=(Button)findViewById(R.id.update_btn);
+        ButterKnife.bind(this);
 
         setDataAtLaunch();
 
-
-        updateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickedUpdate();
-            }
-        });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.update_btn)
+        public void manageUpdate () {
+        Toast.makeText(UpdateActivity.this,
+                "Hello from Butterknife OnClick annotation", Toast.LENGTH_SHORT).show();
+        onClickedUpdate();
+
+    }
+
 
     private void setDataAtLaunch() {
         model=getIntent().getParcelableExtra("AddUpdate");
@@ -51,5 +70,10 @@ public class UpdateActivity extends AppCompatActivity {
         finish();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }
